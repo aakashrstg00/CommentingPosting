@@ -9,6 +9,7 @@
         , "posterId": "a"
         , "posterComment": "Well Done!"
     }]
+    , "viewComments": "false"
 }, {
     "postId": 98971
     , "posterName": "Ansh Mittal"
@@ -20,4 +21,5 @@
         , "posterId": "r"
         , "posterComment": "Good Job"
     }]
+    , "viewComments": "false"
 }]
