@@ -16,7 +16,7 @@ app.controller("newctrl", function ($scope, newfactory) {
     $scope.getPost = function () {
         var promise = newfactory.getPostFromServer(urls.getPosts);
         promise.then(function (data) {
-            $scope.posts = data.data;
+            $scope.posts = data.data.posts;
         }, function (error) {
             $scope.error = error;
         });
