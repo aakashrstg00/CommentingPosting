@@ -1,0 +1,23 @@
+[{
+    "postId": 98970
+    , "posterName": "Debansh Saumbhav"
+    , "posterId": "debusaum9898"
+    , "postContent": "Lorem Ipsum1"
+    , "postLikes": ["A", "S", "D", "F", "G"]
+    , "postComments": [{
+        "posterName": "A"
+        , "posterId": "a"
+        , "posterComment": "Well Done!"
+    }]
+}, {
+    "postId": 98971
+    , "posterName": "Ansh Mittal"
+    , "posterId": "amittalcool96"
+    , "postContent": "Lorem Ipsum2"
+    , "postLikes": ["Q", "W", "E", "R", "T"]
+    , "postComments": [{
+        "posterName": "R"
+        , "posterId": "r"
+        , "posterComment": "Good Job"
+    }]
+}]

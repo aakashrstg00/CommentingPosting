@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quizential</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/factory.js"></script>
+    <script src="js/controller.js"></script>
+    <link rel="stylesheet" href="css/post.css"> </head>
+
+<body ng-app="newmodule">
+    <div ng-controller="newctrl" class="container">
+        <h3 class="display-3">{{msg}}</h3>
+        <button class="btn btn-outline-info my-3" ng-click="getpost()"> Refresh Posts</button>
+        <div class="card mt-3">
+            <div class="card-heading card-inverse card-info">
+                <h4 class="post-heading">{{post.poster}} </h4> </div>
+            <div class="card-block">
+                <div class="post-content mb-5">{{post.postContent}} </div>
+                <div id="post-comments" class="row justify-content-around form-group">
+                    <input type="text" placeholder="Enter comment...." ng-model="post.newComment" class="form-control col-md-8">
+                    <button class="btn btn-primary" ng-click="submitComment()">Submit Comment</button>
+                    <button class="btn btn-info" ng-click="toggleViewComments()">View Comments</button>
+                </div>
+                <div ng-if="viewComments">more comments comming right away..</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
