@@ -1,25 +1,54 @@
 app.controller("newctrl", function ($scope, newfactory) {
+    $scope.my = {
+        name: "Aakash"
+    }
     $scope.msg = "Posts";
-    var url = "../temp.json";
     $scope.viewComments = false;
-    $scope.getpost = function () {
-        /*var promise = newfactory.getPostFromServer(url);
+    $scope.toggleViewComments = function (obj) {
+        if (obj.viewComments === true) {
+            obj.viewComments = false;
+        }
+        else
+        if (obj.viewComments === false) {
+            obj.viewComments = true;
+        }
+    }
+    $scope.getPost = function () {
+        var promise = newfactory.getPostFromServer(urls.getPosts);
         promise.then(function (data) {
-            $scope.serverdata = data.data;
+            $scope.posts = data.data;
         }, function (error) {
             $scope.error = error;
-        });*/
-        $scope.post = {};
-        $scope.post.poster = "Aakash Rastogi";
-        $scope.post.postContent = "Hi this is my first post. Lorem Ipsum can't create the effect that I can create. I am a motherfuckin starboy!!";
+        });
     }
-    $scope.toggleViewComments = function () {
-        if ($scope.viewComments === true) {
-            $scope.viewComments = false;
-        }
-        else if ($scope.viewComments === false) {
-            $scope.viewComments = true;
-        }
+    $scope.postComment = function () {
+        var promise = newfactory.postComment(urls.postComment);
+        promise.then(function (data) {
+            $scope.commentPostResult = data.data.posts;
+        }, function (error) {
+            $scope.error = error;
+        });
+        console.log("Entered post comment!");
     }
-    $scope.getpost();
+    $scope.toggleLikePost = function (obj) {
+        if (obj.postLiked === true) {
+            obj.postLiked = false;
+            obj.postLikes.pop();
+        }
+        else if (obj.postLiked === false) {
+            obj.postLiked = true;
+            obj.postLikes.push($scope.my.name);
+        }
+        //newfactory.postObjToServer(urls.postPost);
+    }
+    $scope.deleteComment = function () {
+        var promise = newfactory.deleteComment(urls.deleteComment);
+        promise.then(function (data) {
+            $scope.commentDeleteResult = data.data;
+        }, function (error) {
+            $scope.error = error;
+        });
+        console.log("Entered delete comment!");
+    }
+    $scope.getPost();
 });

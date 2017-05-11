@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
     <script src="js/factory.js"></script>
     <script src="js/controller.js"></script>
     <link rel="stylesheet" href="css/post.css"> </head>
@@ -16,18 +17,31 @@
 <body ng-app="newmodule">
     <div ng-controller="newctrl" class="container">
         <h3 class="display-3">{{msg}}</h3>
-        <button class="btn btn-outline-info my-3" ng-click="getpost()"> Refresh Posts</button>
-        <div class="card mt-3">
+        <button class="btn btn-outline-info my-3" ng-click="getPost()"> Refresh Posts</button>
+        <hr>
+        <div class="card my-3 mx-3 post" ng-repeat="post in posts">
             <div class="card-heading card-inverse card-info">
-                <h4 class="post-heading">{{post.poster}} </h4> </div>
+                <h4 class="post-heading px-1">{{post.posterName}} </h4> </div>
             <div class="card-block">
                 <div class="post-content mb-5">{{post.postContent}} </div>
-                <div id="post-comments" class="row justify-content-around form-group">
-                    <input type="text" placeholder="Enter comment...." ng-model="post.newComment" class="form-control col-md-8">
-                    <button class="btn btn-primary" ng-click="submitComment()">Submit Comment</button>
-                    <button class="btn btn-info" ng-click="toggleViewComments()">View Comments</button>
+                <div class="my-3"> <a ng-click="toggleLikePost(post)" id="likePost" style="font-style: italic; text-decoration: underline; color:darkslateblue">Likes</a> : {{post.postLikes.length}} || <a ng-click="toggleViewComments(post)" style="font-style: italic; text-decoration: underline; color:darkslateblue">Comments</a> : {{post.postComments.length}} </div>
+                <div id=""></div>
+                <div id="post-comments" class="row justify-content-between form-group">
+                    <input type="text" placeholder="Enter comment...." ng-model="newComment" class="form-control col-md-8">
+                    <button class="btn btn-primary" ng-click="postComment()">Post Comment</button>
                 </div>
-                <div ng-if="viewComments">more comments comming right away..</div>
+                <div ng-if="post.viewComments" ng-repeat="comment in post.postComments">
+                    <hr>
+                    <div class="row justify-content-between">
+                        <div>
+                            <div class="post-heading pl-3">{{comment.posterName}}</div>
+                            <div class="post-comment pl-3">{{comment.posterComment}}</div>
+                        </div>
+                        <div>
+                            <button ng-click="deleteComment(post,comment)" class="btn btn-warning">Delete</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
